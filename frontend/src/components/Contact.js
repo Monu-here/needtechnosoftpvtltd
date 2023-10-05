@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import { getData, listContact, postContact } from "../utils/routes";
 
 function Contact() {
+  // const [name, setName] = useState("");
+  // const [phoneNumber , setPhoneNumber] =useState("")
+  // const [name , setName] =useState("")
+  // const [name , setName] =useState("")
+  // const submitForm = () => {
+  //   axios.post(postContact, { name });
+  // };
+  const [contactData, setContactData] = useState([]);
+  useEffect(() => {
+    getData(listContact)
+      .then((data) => {
+        setContactData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className="contact">
       <section id="contact">
-      <div className="hire">
-        ARE YOU READY FOR YOUR NEXT PROJECT?
-        <button className="buttom">HIRE US</button>
-      </div>
+        <div className="hire">
+          ARE YOU READY FOR YOUR NEXT PROJECT?
+          <button className="buttom">HIRE US</button>
+        </div>
         <div className="contact">
           <div className="row me-0">
             <div className="col-md-6">
@@ -23,28 +42,33 @@ function Contact() {
                   collaboration proposals, or simply want to connect, we welcome
                   the opportunity to engage with you.
                 </div>
-                <div className="icon">
-                  <FontAwesomeIcon icon={faLocationDot} className="icons" />
-                  <p>Dudfarm, Biratnagar</p>
-                </div>
-                <div className="icon">
-                  <FontAwesomeIcon icon={faPhone} className="icons" />
-                  <a href="tel:{{ $footer->phoneno }}">
-                    <p>9852078274, 9842334553</p>
-                  </a>
-                </div>
-                <div className="icon">
-                  <FontAwesomeIcon icon={faEnvelope} className="icons" />
-                  <a href="mailto:{{ email }}">
-                    <p>info@needtechnosoft.tech</p>
-                  </a>
-                </div>
-                <div className="icon">
-                  <FontAwesomeIcon icon={faClock} className="icons" />
-                  <p>sun-Fri : 8AM-18PM</p>
-                </div>
+                {contactData.map((element,index) => (
+                  <div key={element.id}>
+                    <div className="icon" >
+                      <FontAwesomeIcon icon={faLocationDot} className="icons" />
+                      <p>{element.address}</p>
+                    </div>
+                    <div className="icon">
+                      <FontAwesomeIcon icon={faPhone} className="icons" />
+                      <a href="tel:{{ $footer->phoneno }}">
+                        <p>{element.phone}</p>
+                      </a>
+                    </div>
+                    <div className="icon">
+                      <FontAwesomeIcon icon={faEnvelope} className="icons" />
+                      <a href="mailto:{{ email }}">
+                        <p>{element.mail}</p>
+                      </a>
+                    </div>
+                    <div className="icon">
+                      <FontAwesomeIcon icon={faClock} className="icons" />
+                      <p>{element.time}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
+
             <div className="col-md-6 ">
               <div className="row contact-form">
                 <div className="form">
@@ -54,18 +78,21 @@ function Contact() {
                         type="text"
                         size="50"
                         rows="1"
-                        class="form-control"
+                        className="form-control"
                         placeholder=" Name"
                         required=""
+                        name="name"
+                        // value={name}
+                        // onChange={(e) => setName(e.target.value)}
                       />
                     </div>
                   </div>
                   <div className="row me-0">
-                    <div className="col-md-6">
+                    <div className="col-md-6 mt-3">
                       <input
                         type="email"
                         size="50"
-                        class="form-control"
+                        className="form-control"
                         placeholder=" Email"
                         style={{ marginTop: "15px", display: "block" }}
                         required=""
@@ -75,7 +102,7 @@ function Contact() {
                       <input
                         type="text"
                         size="50"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Subject"
                         style={{ marginTop: "15px", display: "block" }}
                         required=""
@@ -88,7 +115,7 @@ function Contact() {
                         name="comment"
                         id="comment"
                         rows="7"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Your Message"
                         style={{ marginTop: "15px", display: "block" }}
                       ></textarea>
@@ -96,7 +123,12 @@ function Contact() {
                   </div>
                 </div>
               </div>
-              <button className="submit">Send Message</button>
+              <button
+                className="submit"
+                // onClick={submitForm}
+              >
+                Send Message
+              </button>
             </div>
           </div>
         </div>

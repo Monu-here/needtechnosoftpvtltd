@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\contactController;
+use App\Http\Controllers\Admin\featureController;
+use App\Http\Controllers\Admin\homeController as AdminHomeController;
+use App\Http\Controllers\Admin\serviceController;
+use App\Http\Controllers\Admin\teamController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('list', [AdminHomeController::class, 'list']);
+Route::get('feature/list', [featureController::class, 'featureList']);
+Route::get('team/list',[teamController::class,'teamList']);
+Route::get('service/list',[serviceController::class,'serviceList']);
+Route::get('contact/list',[contactController::class,'contactList']);
+Route::post('add', [contactController::class, 'add']);

@@ -1,25 +1,45 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { getIMGURL, listRoute } from "../utils/routes";
 
 function Home() {
+  const [listDatas, setListDatas] = useState([]);
+  useEffect(() => {
+    try {
+      async function fetch() {
+        const { data } = await axios.get(`http://127.0.0.1:8000/api/list`);
+
+        setListDatas(data);
+      }
+      fetch();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
-    <div>
-      <section id="home">
-        <div className="header">
-          <div className="text">
-            <p className="text1">BUILD YOUR AWESOME WEB</p>
-            <p className="text2">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the <br />
-              industry's standard dummy text ever since the 1500s.
-            </p>
+    <>
+      {listDatas.map((ele, i) => (
+        <section
+          id="home"
+          style={{
+            backgroundImage: `linear-gradient(
+              180deg,
+              rgba(13, 13, 13, 0.916),
+              rgba(7, 7, 7, 0.779)
+            ), url(${getIMGURL(ele.image)})`,
+          }}
+          key={ele.id}
+        >
+          <div className="header">
+            <div className="text">
+              <p className="text1">{ele.title}</p>
+              <p className="text2">{ele.short_desc}</p>
+            </div>
           </div>
-          <div className="buttom">
-            <button className="buttom1">Buy Now</button>
-            <button className="buttom2">Read More</button>
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      ))}
+    </>
   );
 }
 export default Home;

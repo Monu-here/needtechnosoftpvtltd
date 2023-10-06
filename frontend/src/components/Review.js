@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 function Review() {
-  // const [listDatas, setListDatas] = useState([]);
+  // const [listData, setListDatas]= useState();
   // useEffect(() => {
   //   getData(listFeature)
   //     .then((data) => {
@@ -11,7 +11,6 @@ function Review() {
   //     .catch((err) => {
   //       console.log(err);
   //     });
-  // }, []);
   return (
     <div className="review">
       <Carousel showArrows={true} showIndicators={false}>
@@ -75,5 +74,4 @@ function Review() {
     </div>
   );
 }
-
 export default Review;

@@ -5,7 +5,7 @@
 
 .up {
   background-color: white;
-  border-bottom: 1px solid rgba(183, 181, 181, 0.1);
+  border-bottom: 1px solid rgba(147, 145, 145, 0.1);
   padding: 15px;
 }
 .container {
@@ -59,7 +59,7 @@
 .header .text1 {
   font-size: 45px;
   font-weight: 700;
-  padding-top: 14%;
+  padding-top: 15%;
 }
 .buttom {
   margin-top: 50px;
@@ -211,7 +211,7 @@
   text-align: center;
 }
 .review img {
-  margin-top: 5%;
+  margin-top: 6.5%;
   border-radius: 100px;
 }
 .review .reviews img {

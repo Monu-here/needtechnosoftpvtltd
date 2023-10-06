@@ -35,7 +35,7 @@ class contactController extends Controller
             $contact->mail = $request->mail;
             $contact->time = $request->time;
             $contact->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data added Successfully');
         } else {
             return view('back.contact.add');
         }
@@ -49,7 +49,7 @@ class contactController extends Controller
             $contact->mail = $request->mail;
             $contact->time = $request->time;
             $contact->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data update Successfully');
         } else {
             return view('back.contact.edit', compact('contact'));
         }
@@ -57,6 +57,6 @@ class contactController extends Controller
     public function del($contact)
     {
         DB::table('contacts')->where('id', $contact)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('error', 'Data delete Successfully');
     }
 }

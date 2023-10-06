@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 function Review() {
+  // const [listDatas, setListDatas] = useState([]);
+  // useEffect(() => {
+  //   getData(listFeature)
+  //     .then((data) => {
+  //       setListDatas(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
   return (
     <div className="review">
       <Carousel showArrows={true} showIndicators={false}>
         <div>
-          <div className="review1">
+          <div className="reviews">
             <img src="../../images/anup.jpg" />
             <div className="text">
               <div className="view">
@@ -20,7 +30,7 @@ function Review() {
           </div>
         </div>
         <div>
-          <div className="review2">
+          <div className="reviews">
             <img src="../../images/bisnu.png" />
             <div className="text">
               <div className="view">
@@ -34,7 +44,7 @@ function Review() {
           </div>
         </div>
         <div>
-          <div className="review3">
+          <div className="reviews">
             <img src="../../images/abhijal.jpg" />
             <div className="text">
               <div className="view">
@@ -48,7 +58,7 @@ function Review() {
           </div>
         </div>
         <div>
-          <div className="review4">
+          <div className="reviews">
             <img src="../../images/prem.jpg" />
             <div className="text">
               <div className="view">
@@ -65,4 +75,5 @@ function Review() {
     </div>
   );
 }
+
 export default Review;

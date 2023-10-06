@@ -13,6 +13,11 @@
     <meta name="msapplication-tap-highlight" content="no">
     <link href="https://demo.dashboardpack.com/architectui-html-free/main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-
+    alpha/css/bootstrap.css"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @yield('css')
 </head>
 
@@ -159,6 +164,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('admin.test.index') }}" class="">
+                                    <i class="fa-solid fa-star"></i> Testimonial
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('admin.contact.index') }}" class="">
                                     <i class="fa-solid fa-address-book"></i> Contact
                                 </a>
@@ -188,11 +198,24 @@
                 </div>
             </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
-        <script type="text/javascript" src="https://demo.dashboardpack.com/architectui-html-free/assets/scripts/main.js">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        @yield('js')
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script type="text/javascript" src="https://demo.dashboardpack.com/architectui-html-free/assets/scripts/main.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    @include('back.toster.index')
+    @yield('js')
+    <script>
+        showToastr();
+    </script>
 </body>
 
 </html>

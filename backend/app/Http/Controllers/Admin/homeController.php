@@ -26,7 +26,7 @@ class homeController extends Controller
             $home->title = $request->title;
             $home->short_desc = $request->short_desc;
             $home->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data added Successfully');
         } else {
             return view('back.home.add');
         }
@@ -40,7 +40,7 @@ class homeController extends Controller
             $home->title = $request->title;
             $home->short_desc = $request->short_desc;
             $home->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data update Successfully');
         } else {
             return view('back.home.edit', compact('home'));
         }
@@ -48,6 +48,6 @@ class homeController extends Controller
     public function del($home)
     {
         DB::table('homes')->where('id', $home)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('error', 'Data delete Successfully');
     }
 }

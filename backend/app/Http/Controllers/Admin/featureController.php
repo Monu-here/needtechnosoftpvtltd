@@ -28,7 +28,7 @@ class featureController extends Controller
             $feature->sub_title = $request->sub_title;
             $feature->sub_short_desc = $request->sub_short_desc;
             $feature->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data added Successfully');
         } else {
             return view('back.feature.add');
         }
@@ -44,7 +44,7 @@ class featureController extends Controller
             $feature->sub_title = $request->sub_title;
             $feature->sub_short_desc = $request->sub_short_desc;
             $feature->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data update Successfully');
         } else {
             return view('back.feature.edit', compact('feature'));
         }
@@ -52,6 +52,6 @@ class featureController extends Controller
     public function del($feature)
     {
         DB::table('features')->where('id', $feature)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('erroe', 'Data delete Successfully');
     }
 }

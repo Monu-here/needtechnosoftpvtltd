@@ -1,29 +1,41 @@
 @extends('layout')
 @section('toolbar')
-    Add Testimonial
+    <a href="{{ route('admin.test.add') }}">Add Testimonial</a>
 @endsection
 @section('linkbar')
-/ Testimonial
+    / Testimonial
 @endsection
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <div class="shadow">
-            <table class="table table-bordered">
-                <thead>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Action</th>
-                </thead>
-                <tbody>
-
-
-                </tbody>
-            </table>
+    <div class="card">
+        <div class="card-body">
+            <div class="shadow">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Position</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($testmonials as $testmonial)
+                            <tr>
+                                <td>{{ $testmonial->name }}</td>
+                                <td>{{ $testmonial->short_desc }}</td>
+                                <td>
+                                    <img src="{{ asset($testmonial->image) }}" alt="" width="50">
+                                </td>
+                                <td>{{ $testmonial->position }}</td>
+                                <td>
+                                    <a href="{{route('admin.test.edit',['testmonial'=>$testmonial->id])}}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('admin.test.del', ['testmonial'=>$testmonial->id]) }}"
+                                        class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 @endsection

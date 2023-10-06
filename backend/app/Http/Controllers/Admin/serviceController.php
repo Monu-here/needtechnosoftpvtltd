@@ -29,7 +29,7 @@ class serviceController extends Controller
             $service->name = $request->name;
             $service->sub_short_desc = $request->sub_short_desc;
             $service->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data added Successfully');
         } else {
             return view('back.service.add');
         }
@@ -46,7 +46,7 @@ class serviceController extends Controller
             $service->name = $request->name;
             $service->sub_short_desc = $request->sub_short_desc;
             $service->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data update Successfully');
         } else {
             return view('back.service.edit', compact('service'));
         }
@@ -54,6 +54,6 @@ class serviceController extends Controller
     public function del($service)
     {
         DB::table('services')->where('id', $service)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('error', 'Data added Successfully');
     }
 }

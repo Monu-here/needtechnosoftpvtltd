@@ -29,7 +29,7 @@ class teamController extends Controller
             $team->position = $request->position;
             $team->short_des = $request->short_des;
             $team->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data added Successfully');
         } else {
             return view('back.team.add');
         }
@@ -46,7 +46,7 @@ class teamController extends Controller
             $team->position = $request->position;
             $team->short_des = $request->short_des;
             $team->save();
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Data updated Successfully');
         } else {
             return view('back.team.edit', compact('team'));
         }
@@ -54,6 +54,6 @@ class teamController extends Controller
     public function del($team)
     {
         DB::table('teams')->where('id', $team)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('error', 'Data delete Successfully');
     }
 }

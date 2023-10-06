@@ -32,6 +32,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::prefix('test')->name('test.')->group(function () {
         Route::get('', [testmonialController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [testmonialController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{testmonial}', [testmonialController::class, 'edit'])->name('edit');
+        Route::get('del/{testmonial}', [testmonialController::class, 'del'])->name('del');
     });
     Route::prefix('service')->name('service.')->group(function () {
         Route::get('', [serviceController::class, 'index'])->name('index');

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class contactController extends Controller
 {
-    // public function add(Request $request)
+    // public function submit(Request $request)
     // {
     //     $contact = new monu();
     //     $contact->name = $request->name;

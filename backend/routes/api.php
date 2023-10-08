@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\contactController;
+use App\Http\Controllers\Admin\ContactsubmitController;
 use App\Http\Controllers\Admin\featureController;
 use App\Http\Controllers\Admin\homeController as AdminHomeController;
 use App\Http\Controllers\Admin\serviceController;
@@ -27,8 +28,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('list', [AdminHomeController::class, 'list']);
 Route::get('feature/list', [featureController::class, 'featureList']);
-Route::get('team/list',[teamController::class,'teamList']);
-Route::get('service/list',[serviceController::class,'serviceList']);
-Route::get('testmonial/list',[testmonialController::class,'testmonialList']);
-Route::get('contact/list',[contactController::class,'contactList']);
-Route::post('add', [contactController::class, 'add']);
+Route::get('team/list', [teamController::class, 'teamList']);
+Route::get('service/list', [serviceController::class, 'serviceList']);
+Route::get('testmonial/list', [testmonialController::class, 'testmonialList']);
+Route::get('contact/list', [contactController::class, 'contactList']);
+Route::post('contact/submit', [ContactsubmitController::class, 'submit']);

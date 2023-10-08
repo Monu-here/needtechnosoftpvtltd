@@ -27,7 +27,7 @@
                                 <td>{{ $contact->time }}</td>
                                 <td>
                                     <a href="{{ route('admin.contact.edit', ['contact' => $contact->id]) }}"
-                                        class="btn btn-primary">Edit</a>
+                                        class="btn btn-primary" onclick="return confirm('edit')">Edit</a>
                                     <a href="{{ route('admin.contact.del', ['contact' => $contact->id]) }}"
                                         class="btn btn-danger" onclick=" return confirm('delete')">Delete</a>
                                 </td>

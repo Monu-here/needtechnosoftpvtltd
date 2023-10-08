@@ -8,7 +8,7 @@ export const listTeam = `${apiURL}/team/list`;
 export const listService = `${apiURL}/service/list`;
 export const listContact = `${apiURL}/contact/list`;
 export const ListTestmonial = `${apiURL}/testmonial/list`;
-export const postContact = `${apiURL}/add`;
+export const postContact = `${apiURL}/contact/submit`;
 export const getIMGURL = (path) => {
   return URL + path;
 };

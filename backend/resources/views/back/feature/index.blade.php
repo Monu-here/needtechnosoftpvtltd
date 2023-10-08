@@ -28,7 +28,7 @@
                                 <td>{{ $feature->sub_short_desc }}</td>
                                 <td>
                                     <a href="{{ route('admin.feature.edit', ['feature' => $feature->id]) }}"
-                                        class="btn btn-primary">Edit</a>
+                                        class="btn btn-primary" onclick="return confirm('edit')">Edit</a>
                                     <a href="{{ route('admin.feature.del', ['feature' => $feature->id]) }}"
                                         class="btn btn-danger">Delete</a>
                                 </td>

@@ -27,8 +27,9 @@
                                 </td>
                                 <td>{{ $testmonial->position }}</td>
                                 <td>
-                                    <a href="{{route('admin.test.edit',['testmonial'=>$testmonial->id])}}" class="btn btn-primary">Edit</a>
-                                    <a href="{{ route('admin.test.del', ['testmonial'=>$testmonial->id]) }}"
+                                    <a href="{{ route('admin.test.edit', ['testmonial' => $testmonial->id]) }}"
+                                        class="btn btn-primary" onclick="return confirm('edit')">Edit</a>
+                                    <a href="{{ route('admin.test.del', ['testmonial' => $testmonial->id]) }}"
                                         class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>

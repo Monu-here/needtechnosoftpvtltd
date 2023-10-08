@@ -26,7 +26,7 @@
                                 <td>{{ $home->short_desc }}</td>
                                 <td>
                                     <a href="{{ route('admin.home.edit', ['home' => $home->id]) }}"
-                                        class="btn btn-primary">Edit</a>
+                                        class="btn btn-primary" onclick="return confirm('edit')">Edit</a>
                                     <a href="{{ route('admin.home.del', ['home' => $home->id]) }}" class="btn btn-danger"
                                         onclick="return confirm('Delete')">Delete</a>
                                 </td>

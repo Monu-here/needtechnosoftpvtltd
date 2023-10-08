@@ -22,6 +22,9 @@
 </head>
 
 <body>
+    <?php
+    $user = Auth::user();
+    ?>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
@@ -76,16 +79,19 @@
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" tabindex="0" class="dropdown-item">Logout</button>
+                                            <a href="{{ route('adminLogin.logout') }}"><button type="button"
+                                                    tabindex="0" class="dropdown-item">Logout</button></a>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                        Need technosoft Pvt. Ltd.
+                                        {{ $user->name }}
+
                                     </div>
                                     <div class="widget-subheading">
-                                        Admin
+                                        {{$user->is_admin}}
                                     </div>
                                 </div>
 
@@ -140,6 +146,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('admin.navFooter.index') }}">
+                                    <i class="fa-solid fa-skull "></i> Nav/Footer
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('admin.home.index') }}" class="">
                                     <i class="fa-solid fa-house"></i>
                                     Home
@@ -171,6 +182,11 @@
                             <li>
                                 <a href="{{ route('admin.contact.index') }}" class="">
                                     <i class="fa-solid fa-address-book"></i> Contact
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.submitContact.index') }}" class="">
+                                    <i class="fa-solid fa-address-book"></i> Contact Form
                                 </a>
                             </li>
 

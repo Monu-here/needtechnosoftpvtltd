@@ -6,15 +6,43 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { getData, listContact, postContact } from "../utils/routes";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Contact() {
-  // const [name, setName] = useState("");
-  // const [phoneNumber , setPhoneNumber] =useState("")
-  // const [name , setName] =useState("")
-  // const [name , setName] =useState("")
-  // const submitForm = () => {
-  //   axios.post(postContact, { name });
-  // };
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const submitForm = () => {
+    const formData = {
+      name,
+      email,
+      subject,
+      message,
+    };
+
+    axios
+      .post(postContact, formData)
+      .then((response) => {
+        console.log("Form submitted successfully!", response);
+
+        toast.success("Your form submitted successfully!", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+        });
+
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      })
+      .catch((error) => {
+        console.error("Error submitting the form:", error);
+      });
+  };
+
   const [contactData, setContactData] = useState([]);
   useEffect(() => {
     getData(listContact)
@@ -25,6 +53,7 @@ function Contact() {
         console.log(err);
       });
   }, []);
+
   return (
     <div className="contact">
       <section id="contact">
@@ -42,21 +71,27 @@ function Contact() {
                   collaboration proposals, or simply want to connect, we welcome
                   the opportunity to engage with you.
                 </div>
-                {contactData.map((element,index) => (
+                {contactData.map((element, index) => (
                   <div key={element.id}>
-                    <div className="icon" >
-                      <FontAwesomeIcon icon={faLocationDot} className="icons" />
+                    <div className="icon">
+                      <FontAwesomeIcon
+                        icon={faLocationDot}
+                        className="icons"
+                      />
                       <p>{element.address}</p>
                     </div>
                     <div className="icon">
                       <FontAwesomeIcon icon={faPhone} className="icons" />
-                      <a href="tel:{{ $footer->phoneno }}">
+                      <a href={`tel:${element.phone}`}>
                         <p>{element.phone}</p>
                       </a>
                     </div>
                     <div className="icon">
-                      <FontAwesomeIcon icon={faEnvelope} className="icons" />
-                      <a href="mailto:{{ email }}">
+                      <FontAwesomeIcon
+                        icon={faEnvelope}
+                        className="icons"
+                      />
+                      <a href={`mailto:${element.mail}`}>
                         <p>{element.mail}</p>
                       </a>
                     </div>
@@ -82,8 +117,8 @@ function Contact() {
                         placeholder=" Name"
                         required=""
                         name="name"
-                        // value={name}
-                        // onChange={(e) => setName(e.target.value)}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                       />
                     </div>
                   </div>
@@ -96,6 +131,8 @@ function Contact() {
                         placeholder=" Email"
                         style={{ marginTop: "15px", display: "block" }}
                         required=""
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                     <div className="col-md-6">
@@ -106,6 +143,8 @@ function Contact() {
                         placeholder="Subject"
                         style={{ marginTop: "15px", display: "block" }}
                         required=""
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
                       />
                     </div>
                   </div>
@@ -118,21 +157,21 @@ function Contact() {
                         className="form-control"
                         placeholder="Your Message"
                         style={{ marginTop: "15px", display: "block" }}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                       ></textarea>
                     </div>
                   </div>
                 </div>
               </div>
-              <button
-                className="submit"
-                // onClick={submitForm}
-              >
+              <button className="submit" onClick={submitForm}>
                 Send Message
               </button>
             </div>
           </div>
         </div>
       </section>
+      <ToastContainer />
     </div>
   );
 }

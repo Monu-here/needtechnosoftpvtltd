@@ -30,7 +30,7 @@
                                 <td>{{ $service->sub_short_desc }}</td>
                                 <td>
                                     <a href="{{ route('admin.service.edit', ['service' => $service->id]) }}"
-                                        class="btn btn-primary">Edit</a>
+                                        class="btn btn-primary" onclick="return confirm('edit')">Edit</a>
                                     <a href="{{ route('admin.service.del', ['service' => $service->id]) }}"
                                         class="btn btn-danger">Delete</a>
                                 </td>

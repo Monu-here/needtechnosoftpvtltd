@@ -1,17 +1,31 @@
 <?php
 
 use App\Http\Controllers\Admin\contactController;
+use App\Http\Controllers\Admin\ContactsubmitController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\dashController;
 use App\Http\Controllers\Admin\featureController;
 use App\Http\Controllers\Admin\homeController;
+use App\Http\Controllers\Admin\loginController;
+use App\Http\Controllers\Admin\navFooterController;
 use App\Http\Controllers\Admin\serviceController;
 use App\Http\Controllers\Admin\teamController;
 use App\Http\Controllers\Admin\testmonialController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('adminLogin')->name('adminLogin.')->group(function () {
+    Route::match(['GET', 'POST'], '', [loginController::class, 'login'])->name('login');
+    Route::get('/logout', [loginController::class, 'logout'])->name('logout');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::get('', [dashController::class, 'index'])->name('index');
+    Route::prefix('navFooter')->name('navFooter.')->group(function () {
+        Route::get('', [navFooterController::class, 'index'])->name('index');
+        Route::match(['GET', 'POST'], 'add', [navFooterController::class, 'add'])->name('add');
+        Route::match(['GET', 'POST'], 'edit/{navFooter}', [navFeooterController::class, 'edit'])->name('edit');
+        Route::get('del/{navFooter}', [navFooterController::class, 'del'])->name('del');
+    });
     Route::prefix('home')->name('home.')->group(function () {
         Route::get('', [homeController::class, 'index'])->name('index');
         Route::match(['GET', 'POST'], 'add', [homeController::class, 'add'])->name('add');
@@ -47,5 +61,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::match(['GET', 'POST'], 'add', [contactController::class, 'add'])->name('add');
         Route::match(['GET', 'POST'], 'edit/{contact}', [contactController::class, 'edit'])->name('edit');
         Route::get('del/{contact}', [contactController::class, 'del'])->name('del');
+    });
+    Route::prefix('submitContact')->name('submitContact.')->group(function () {
+        Route::get('', [ContactsubmitController::class, 'index'])-> name('index');
     });
 });
